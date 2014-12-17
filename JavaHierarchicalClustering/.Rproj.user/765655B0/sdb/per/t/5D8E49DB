@@ -1,0 +1,16 @@
+{
+    "contents" : "Package: JavaHierarchicalClustering\nType: Package\nTitle: Java Hierarchical Clustering for beta diversity analysis\nVersion: 1.2.1\nDate: 2014-10-08\nAuthor: German Sotelo\nMaintainer: German Sotelo <ga.sotelo69@uniandes.edu.co>\nDescription: This is a R wrapper for a Java implementation of Hierarchical clustering for beta diversity analysis. This implementation provides a non agglomerative implementation using OR as combination function. It also provides single link agglomerative clustering. It supports several indexes of beta diversity as defined in Koleff et al. (2003).\nLicense: Private use only\n",
+    "created" : 1418670752481.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3040184036",
+    "id" : "5D8E49DB",
+    "lastKnownWriteTime" : 1418670853,
+    "path" : "E:/GitHub/JavaHierarchicalClustering/JavaHierarchicalClustering/DESCRIPTION",
+    "project_path" : "DESCRIPTION",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "dcf"
+}
