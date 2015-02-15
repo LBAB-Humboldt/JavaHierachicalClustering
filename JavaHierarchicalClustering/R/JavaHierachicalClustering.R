@@ -4,7 +4,7 @@
 jhclust<-function(table,distance="sim",clusteringMethod="simple",threads=1){
   generator <- .jnew("datasets.DatasetGenerator");
   rowNames = rownames(table);
-  .jcall(generator,"V","setColumnNames",colnames(sipoo));
+  .jcall(generator,"V","setColumnNames",colnames(table));
   for(i in 1:nrow(table)){
     .jcall(generator,"V","addPoint",rowNames[i],as.integer(table[i,]))
   }

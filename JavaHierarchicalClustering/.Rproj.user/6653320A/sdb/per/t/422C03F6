@@ -1,0 +1,16 @@
+{
+    "contents" : ".onLoad <- function(libname, pkgname) {\n  .jpackage(pkgname, lib.loc = libname);\n}\njhclust<-function(table,distance=\"sim\",clusteringMethod=\"simple\",threads=1){\n  generator <- .jnew(\"datasets.DatasetGenerator\");\n  rowNames = rownames(table);\n  .jcall(generator,\"V\",\"setColumnNames\",colnames(table));\n  for(i in 1:nrow(table)){\n    .jcall(generator,\"V\",\"addPoint\",rowNames[i],as.integer(table[i,]))\n  }\n  \n  if(clusteringMethod==\"simple\"){\n    resultado <- .jcall(generator,\"Lclustering/results/Resultado;\",\"directClustering\",distance,as.integer(threads))\n    return(procesarResultado(resultado,distance,clusteringMethod));\n  }\n  if(clusteringMethod==\"single\"){\n    resultado <- .jcall(generator,\"Lclustering/results/Resultado;\",\"singleLinkAgglomerativeClustering\",distance,as.integer(threads))\n    return(procesarResultado(resultado,distance,clusteringMethod));\n  }\n}\njhclust.csv<-function(input,distance=\"sim\",clusteringMethod=\"simple\",threads=1){\n  obj <- .jnew(\"main.Main\");\n  \n  if(clusteringMethod==\"simple\"){\n    resultado = .jcall(obj,\"Lclustering/results/Resultado;\",\"directClustering\",input,distance,as.integer(threads));\n    return(procesarResultado(resultado,distance,clusteringMethod));\n  }\n  if(clusteringMethod==\"single\"){\n    resultado = .jcall(obj,\"Lclustering/results/Resultado;\",\"singleLinkAgglomerativeClustering\",input,distance,as.integer(threads));\n    return(procesarResultado(resultado,distance,clusteringMethod))\n  }\n}\nprocesarResultado <- function(resultado,distFunction,method){\n  merge = .jcall(resultado,\"Lclustering/results/ResultadoMerge;\",\"getMerge\");\n  ids1 = .jcall(merge,\"[I\",\"getId1\");\n  ids2 = .jcall(merge,\"[I\",\"getId2\");\n  size = .jcall(resultado,\"I\",\"size\")\n  retorno<-list();\n  retorno$height = .jcall(resultado,\"[D\",\"getDistances\");\n  retorno$labels = .jcall(resultado,\"[S\",\"getRowLabels\")\n  retorno$dist.method=distFunction;\n  retorno$method=method;\n  retorno$merge = matrix(nrow = size, ncol = 2)\n  for(i in 1:size){\n    retorno$merge[i,1]=ids1[i];\n    retorno$merge[i,2]=ids2[i];\n  }\n  return(retorno);\n}",
+    "created" : 1424033962447.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2213865440",
+    "id" : "422C03F6",
+    "lastKnownWriteTime" : 1424034001,
+    "path" : "~/GitHub/JavaHierarchicalClustering/JavaHierarchicalClustering/R/JavaHierachicalClustering.R",
+    "project_path" : "R/JavaHierachicalClustering.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
