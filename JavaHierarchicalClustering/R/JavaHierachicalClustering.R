@@ -45,5 +45,6 @@ procesarResultado <- function(resultado,distFunction,method){
     retorno$merge[i,1]=ids1[i];
     retorno$merge[i,2]=ids2[i];
   }
+  class(retorno) <- "hclust";
   return(retorno);
 }
